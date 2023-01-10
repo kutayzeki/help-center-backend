@@ -36,7 +36,9 @@ namespace BackendTemplate
         /// </summary>
         /// <param name="name"></param>
         /// <param name="options"></param>
+#pragma warning disable CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
         public void Configure(string name, SwaggerGenOptions options)
+#pragma warning restore CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
         {
             Configure(options);
         }

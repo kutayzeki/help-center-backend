@@ -1,13 +1,14 @@
 using BackendTemplate;
+using BackendTemplate.Core.Utilities.Localization;
 using BackendTemplate.Models;
 using BackendTemplate.Models.User;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using System;
-
+using Microsoft.Extensions.Localization;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,6 +30,12 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+//Localization
+builder.Services.AddLocalization();
+builder.Services.AddSingleton<LocalizerMiddleware>();
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSingleton<IStringLocalizerFactory, JsonStringLocalizerFactory>();
 
 builder.Services.ConfigureOptions<ConfigureSwaggerOptions>();
 
@@ -66,9 +73,14 @@ if (app.Environment.IsDevelopment())
     });
 }
 
-/*app.UseRequestLocalization(options);
+var options = new RequestLocalizationOptions
+{
+    DefaultRequestCulture = new RequestCulture(new CultureInfo("en-US"))
+};
+
+app.UseRequestLocalization(options);
 app.UseStaticFiles();
-app.UseMiddleware<LocalizerMiddleware>();*/
+app.UseMiddleware<LocalizerMiddleware>();
 
 app.UseHttpsRedirection();
 
