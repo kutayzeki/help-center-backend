@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
+using System;
 using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -102,7 +103,15 @@ app.UseHttpsRedirection();
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
+// Migrate latest database changes during startup
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider
+        .GetRequiredService<APIDbContext>();
 
+    // Here is the migration executed
+    dbContext.Database.Migrate();
+}
 app.MapControllers();
 
 app.Run();
