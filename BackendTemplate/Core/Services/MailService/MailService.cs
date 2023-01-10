@@ -4,13 +4,11 @@ using Microsoft.Extensions.Options;
 using MimeKit;
 using BackendTemplate.Models.Mail;
 using BackendTemplate.Core.Configuration;
+using RazorEngineCore;
+using System.Text;
 
 namespace BackendTemplate.Core.Services.MailService
 {
-    public interface IMailService
-    {
-        Task<bool> SendAsync(MailData mailData, CancellationToken ct);
-    }
     public class MailService : IMailService
     {
         private readonly MailSettings _settings;
@@ -93,6 +91,30 @@ namespace BackendTemplate.Core.Services.MailService
             {
                 return false;
             }
+        }
+        public string GetEmailTemplate<T>(string emailTemplate, T emailTemplateModel)
+        {
+            string mailTemplate = LoadTemplate(emailTemplate);
+
+            IRazorEngine razorEngine = new RazorEngine();
+            IRazorEngineCompiledTemplate modifiedMailTemplate = razorEngine.Compile(mailTemplate);
+
+            return modifiedMailTemplate.Run(emailTemplateModel);
+        }
+
+        public string LoadTemplate(string emailTemplate)
+        {
+            string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+            string templateDir = Path.Combine(baseDir, "../../../Core/Utilities/MailTemplates");
+            string templatePath = Path.Combine(templateDir, $"{emailTemplate}.cshtml");
+
+            using FileStream fileStream = new FileStream(templatePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+            using StreamReader streamReader = new StreamReader(fileStream, Encoding.Default);
+
+            string mailTemplate = streamReader.ReadToEnd();
+            streamReader.Close();
+
+            return mailTemplate;
         }
     }
 }
