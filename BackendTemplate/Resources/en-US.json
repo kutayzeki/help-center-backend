@@ -1,4 +1,68 @@
 ﻿{
-  "hi": "Hello",
-  "welcome": "Welcome to the {0}. How are you doing?"
+  //"hi": "Hello",
+  //"welcome": "Welcome to the {0}. How are you doing?",
+  //ErrorMessages
+  "InvalidRequest": "The request is invalid.",
+  "Unauthorized": "You are not authorized to perform this action.",
+  "Forbidden": "You do not have permission to access this resource.",
+  "NotFound": "The requested resource could not be found.",
+
+  //SuccessMessages
+  "DataRetrieved": "Data retrieved successfully.",
+  "ResourceCreated": "Resource created successfully.",
+  "ResourceUpdated": "Resource updated successfully.",
+  "ResourceDeleted": "Resource deleted successfully.",
+
+  //ValidationErrors
+  "Required": "{0} is required.",
+  "Invalid": "{0} is invalid.",
+  "StringLength": "{0} must be between {2} and {1} characters long.",
+  "Range": "{0} must be between {1} and {2}.",
+
+  //UI
+  //Buttons
+  "Submit": "Submit",
+  "Cancel": "Cancel",
+  "Delete": "Delete",
+
+  //Placeholders
+  "EnterSearchCriteria": "Enter search criteria",
+  "SelectAnOption": "Select an option",
+
+  //ContentStrings
+  "WelcomeMessage": "Welcome to our website!",
+  "AboutUs": "We are a company dedicated to providing top-quality products and services.",
+
+  //FormLabels
+  "Username": "Username",
+  "Password": "Password",
+  "Address": "Address",
+
+  //DateTimeFormats
+  "ShortDate": "MM/dd/yyyy",
+  "LongDate": "MMMM dd, yyyy",
+  "ShortTime": "h:mm tt",
+  "LongTime": "h:mm:ss tt",
+  "Timezone": "UTC-5",
+
+  //NumberFormats
+  "DecimalSeparator": ".",
+  "ThousandsSeparator": ",",
+
+  //Currency
+  "Symbol": "$",
+  "Code": "USD",
+
+  //EmailTemplates
+  "Registration": "Thank you for registering with our website, {username}!",
+  "PasswordReset": "We received a request to reset your password, please click on this link {reset_link} to proceed",
+
+  //SmsTemplates
+  "OTP": "Your one time password is {otp}",
+  "ResetPassword": "Your new password is {password}",
+
+  //HelpMessages
+  "SearchBar": "Enter your search query here.",
+  "AddressField": "Enter your street address, city, and zip code."
+
 }

@@ -18,7 +18,7 @@ namespace BackendTemplate.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var message = _stringLocalizer["hi"].ToString();
+            var message = _stringLocalizer["ErrorMessages.InvalidRequest"].ToString();
             return Ok(message);
         }
 

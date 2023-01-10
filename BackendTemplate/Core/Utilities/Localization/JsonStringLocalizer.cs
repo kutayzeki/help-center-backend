@@ -64,11 +64,11 @@ namespace BackendTemplate.Core.Utilities.Localization
                     reader.Read();
 
                     // Deserialize the found string (might return null)
-                    string? value = _jsonSerializer.Deserialize<string>(reader);
+                    object? value = _jsonSerializer.Deserialize(reader);
 
-                    // return an IEnumerable<> of LocalizedStrings containing the cache key and the strings. false = string was found
+                    // return an IEnumerable<> of LocalizedStrings containing the cache key and the strings/objects. false = string was found
 #pragma warning disable CS8604 // Possible null reference argument.
-                    yield return new LocalizedString(key, value, false);
+                    yield return new LocalizedString(key, value.ToString(), false);
 #pragma warning restore CS8604 // Possible null reference argument.
                 }
             }

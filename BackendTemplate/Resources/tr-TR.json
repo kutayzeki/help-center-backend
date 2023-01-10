@@ -1,4 +1,68 @@
 ﻿{
-  "hi": "Merhaba",
-  "welcome": "{0} uygulamasına hoş geldin! Nasılsın?"
+  //"hi": "Merhaba",
+  //"welcome": "Hoş geldiniz {0}. Nasılsınız?",
+  //ErrorMessages
+  "InvalidRequest": "İstek geçersiz.",
+  "Unauthorized": "Bu işlemi gerçekleştirmek için yetkiniz yok.",
+  "Forbidden": "Bu kaynağa erişim izniniz yok.",
+  "NotFound": "İstenen kaynak bulunamadı.",
+
+  //SuccessMessages
+  "DataRetrieved": "Veri başarıyla alındı.",
+  "ResourceCreated": "Kaynak başarıyla oluşturuldu.",
+  "ResourceUpdated": "Kaynak başarıyla güncellendi.",
+  "ResourceDeleted": "Kaynak başarıyla silindi.",
+
+  //ValidationErrors
+  "Required": "{0} gerekli.",
+  "Invalid": "{0} geçersiz.",
+  "StringLength": "{0} {1} ve {2} karakter arasında olmalıdır.",
+  "Range": "{0} {1} ve {2} arasında olmalıdır.",
+
+  //UI
+  //Buttons
+  "Submit": "Gönder",
+  "Cancel": "İptal",
+  "Delete": "Sil",
+
+  //Placeholders
+  "EnterSearchCriteria": "Arama kriteri girin",
+  "SelectAnOption": "Bir seçenek seçin",
+
+  //ContentStrings
+  "WelcomeMessage": "Web sitemize hoş geldiniz!",
+  "AboutUs": "Mükemmel ürün ve hizmetler sunmak için kurulmuş bir şirkettir.",
+
+  //FormLabels
+  "Username": "Kullanıcı adı",
+  "Password": "Şifre",
+  "Address": "Adres",
+
+  //DateTimeFormats
+  "ShortDate": "dd.MM.yyyy",
+  "LongDate": "dd MMMM yyyy",
+  "ShortTime": "h:mm TT",
+  "LongTime": "h:mm:ss TT",
+  "Timezone": "UTC-3",
+
+  //NumberFormats
+  "DecimalSeparator": ",",
+  "ThousandsSeparator": ".",
+
+  //Currency
+  "Symbol": "₺",
+  "Code": "TRY",
+
+  //EmailTemplates
+  "Registration": "Web sitemize kayıt olduğunuz için teşekkür ederiz, {username}!",
+  "PasswordReset": "Şifrenizi sıfırlamak için bir istek aldık, lütfen bu bağlantıya tıklayın {reset_link} ve devam edin",
+
+  //SmsTemplates
+  "OTP": "Tek kullanımlık şifreniz {otp}",
+  "ResetPassword": "Yeni şifreniz {password}",
+
+  //HelpMessages
+  "SearchBar": "Arama sorgunuzu buraya girin.",
+  "AddressField": "Sokak adresinizi, şehri ve posta kodunu girin."
+
 }
