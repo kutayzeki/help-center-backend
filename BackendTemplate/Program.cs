@@ -26,6 +26,8 @@ builder.Services
     .AddEntityFrameworkStores<APIDbContext>().AddDefaultTokenProviders();
 
 
+builder.Services.AddScoped<ExceptionMiddleware>();
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -55,8 +57,13 @@ builder.Services.AddVersionedApiExplorer(setup =>
     setup.GroupNameFormat = "'v'VVV";
     setup.SubstituteApiVersionInUrl = true;
 });
+// Add Rate Limiting
+builder.Services.AddRateLimiting(builder.Configuration);
 
 var app = builder.Build();
+
+// Use Rate Limiting
+app.UseRateLimiting();
 
 var apiVersionDescriptionProvider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
 
