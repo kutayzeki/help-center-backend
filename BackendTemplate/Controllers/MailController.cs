@@ -32,7 +32,7 @@ namespace BackendTemplate.Controllers
             }
         }
 
-         [HttpPost("sendemailusingtemplate")]
+         [HttpPost("sendwelcomemail")]
         public async Task<IActionResult> SendWelcomeMailAsync(WelcomeMail welcomeMail)
         {
 
