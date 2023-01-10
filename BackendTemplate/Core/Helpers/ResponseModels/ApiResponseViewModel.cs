@@ -1,4 +1,4 @@
-﻿namespace BackendTemplate.ViewModels.ResponseModels
+﻿namespace BackendTemplate.Core.Helpers.ResponseModels
 {
     public class ApiResponseViewModel
     {
