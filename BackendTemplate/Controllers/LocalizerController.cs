@@ -4,8 +4,9 @@ using Microsoft.Extensions.Localization;
 
 namespace BackendTemplate.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/v{version:apiVersion}/[controller]")]
+    [ApiVersion("1.0")]
     public class LocalizerController : ControllerBase
     {
         private readonly IStringLocalizer<LocalizerController> _stringLocalizer;

@@ -1,5 +1,7 @@
 using BackendTemplate;
+using BackendTemplate.Core.Configuration;
 using BackendTemplate.Core.Middleware;
+using BackendTemplate.Core.Services.MailService;
 using BackendTemplate.Core.Utilities.Localization;
 using BackendTemplate.Models;
 using BackendTemplate.Models.User;
@@ -33,6 +35,10 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+//Mail Settings
+builder.Services.Configure<MailSettings>(builder.Configuration.GetSection(nameof(MailSettings)));
+builder.Services.AddTransient<IMailService, MailService>();
 
 //Localization
 builder.Services.AddLocalization();
