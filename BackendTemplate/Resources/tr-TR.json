@@ -1,6 +1,6 @@
 ﻿{
-  //"hi": "Merhaba",
-  //"welcome": "Hoş geldiniz {0}. Nasılsınız?",
+  "hi": "Merhaba",
+  "welcome": "Hoş geldin {0}. Nasılsın?",
   //ErrorMessages
   "InvalidRequest": "İstek geçersiz.",
   "Unauthorized": "Bu işlemi gerçekleştirmek için yetkiniz yok.",

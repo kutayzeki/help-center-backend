@@ -1,6 +1,6 @@
 ﻿{
-  //"hi": "Hello",
-  //"welcome": "Welcome to the {0}. How are you doing?",
+  "hi": "Hello",
+  "welcome": "Welcome {0}. How are you doing?",
   //ErrorMessages
   "InvalidRequest": "The request is invalid.",
   "Unauthorized": "You are not authorized to perform this action.",

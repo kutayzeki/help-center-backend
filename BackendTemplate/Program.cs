@@ -1,4 +1,5 @@
 using BackendTemplate;
+using BackendTemplate.Core.Middleware;
 using BackendTemplate.Core.Utilities.Localization;
 using BackendTemplate.Models;
 using BackendTemplate.Models.User;
@@ -77,6 +78,7 @@ var options = new RequestLocalizationOptions
 {
     DefaultRequestCulture = new RequestCulture(new CultureInfo("en-US"))
 };
+app.UseGlobalExceptionHandler();
 
 app.UseRequestLocalization(options);
 app.UseStaticFiles();
@@ -84,8 +86,8 @@ app.UseMiddleware<LocalizerMiddleware>();
 
 app.UseHttpsRedirection();
 
-app.UseAuthentication();
 app.UseRouting();
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
