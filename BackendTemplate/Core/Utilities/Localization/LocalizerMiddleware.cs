@@ -13,6 +13,7 @@ namespace BackendTemplate.Core.Utilities.Localization
             if (!string.IsNullOrEmpty(cultureKey))
             {
                 // Check if the culture exists
+#pragma warning disable CS8604 // Possible null reference argument.
                 if (DoesCultureExist(cultureKey))
                 {
                     // Set the culture Info
@@ -22,6 +23,7 @@ namespace BackendTemplate.Core.Utilities.Localization
                     Thread.CurrentThread.CurrentCulture = culture;
                     Thread.CurrentThread.CurrentUICulture = culture;
                 }
+#pragma warning restore CS8604 // Possible null reference argument.
             }
 
             // Await the next request

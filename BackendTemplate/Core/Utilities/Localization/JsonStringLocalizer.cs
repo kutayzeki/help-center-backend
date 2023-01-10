@@ -67,7 +67,9 @@ namespace BackendTemplate.Core.Utilities.Localization
                     string? value = _jsonSerializer.Deserialize<string>(reader);
 
                     // return an IEnumerable<> of LocalizedStrings containing the cache key and the strings. false = string was found
+#pragma warning disable CS8604 // Possible null reference argument.
                     yield return new LocalizedString(key, value, false);
+#pragma warning restore CS8604 // Possible null reference argument.
                 }
             }
         }
@@ -124,10 +126,14 @@ namespace BackendTemplate.Core.Utilities.Localization
                 if (!string.IsNullOrEmpty(result)) _distributedCache.SetString(cacheKey, result);
 
                 // Return the found string
+#pragma warning disable CS8603 // Possible null reference return.
                 return result;
+#pragma warning restore CS8603 // Possible null reference return.
             }
 
+#pragma warning disable CS8603 // Possible null reference return.
             return default;
+#pragma warning restore CS8603 // Possible null reference return.
 
         }
     }
