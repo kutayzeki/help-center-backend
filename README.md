@@ -21,7 +21,7 @@ To get started with this template, you will need to clone the repository and set
 
 1. Clone the repository by running the following command:
 ```sh
-git clone https://github.com/yourusername/dotnet-backend-template.git
+git clone https://github.com/kutayzeki/backendtemplate.git
 ```
 2. Open the solution file in Visual Studio and restore the NuGet packages by right-clicking on the solution and selecting "Restore NuGet Packages".
 3. Build the solution to make sure everything is working correctly.
