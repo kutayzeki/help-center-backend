@@ -48,7 +48,7 @@ namespace BackendTemplate.Controllers
                 if (!ModelState.IsValid)
                 {
                     responseViewModel.IsSuccess = false;
-                    responseViewModel.Message = "Bilgileriniz eksik, bazı alanlar gönderilmemiş. Lütfen tüm alanları doldurunuz.";
+                    responseViewModel.Message = "Your information is incomplete, some fields were not submitted. Please fill in all fields.";
 
                     return BadRequest(responseViewModel);
                 }
@@ -58,26 +58,26 @@ namespace BackendTemplate.Controllers
                 if (existsUser != null)
                 {
                     responseViewModel.IsSuccess = false;
-                    responseViewModel.Message = "Kullanıcı zaten var.";
+                    responseViewModel.Message = "The user already exists.";
 
                     return BadRequest(responseViewModel);
                 }
                 #endregion
 
-                //Kullanıcı bilgileri set edilir.
+                // User information is set.
                 ApplicationUser user = new()
                 {
                     Email = model.Email.Trim(),
                     UserName = model.Email.Trim()
                 };
 
-                //Kullanıcı oluşturulur.
+                // The user is created.
                 IdentityResult result = await _userManager.CreateAsync(user, model.Password.Trim());
 
-                //Kullanıcı oluşturuldu ise  
+                  
                 if (result.Succeeded)
                 {
-                    //rol içerde yoksa oluşturuluyor.
+
                     bool roleExists = await _roleManager.RoleExistsAsync(_config[$"Roles:{model.Role}"]);
                     if (!roleExists)
                     {
@@ -88,8 +88,7 @@ namespace BackendTemplate.Controllers
                         _roleManager.CreateAsync(role).Wait();
                     }
 
-                    //Kullanıcıya ilgili rol ataması yapılır.
-                    //TODO role bulunamazsa kullanıcı rolsüz oluşuyor. Edge case olabilir.
+
                     _userManager.AddToRoleAsync(user, _config["Roles:" + model.Role]).Wait();
 
                     //Send email
@@ -99,17 +98,17 @@ namespace BackendTemplate.Controllers
 
                       string url = $"{_config["AppUrl"]}/api/account/confirmemail?userid={user.Id}&token={validEmailToken}";
 
-                      await _emailService.SendEmailAsync(user.Email, "Emailinizi onaylayın", $"<h1>Sınıf'a hoş geldin!</h1>" +
-                          $"<p>Lütfen emailinizi <a href='{url}'>bu linke</a> tıklayarak onaylayın</p>");*/
+                      await _emailService.SendEmailAsync(user.Email, "Confirm Email", $"<h1>Welcome!</h1>" +
+                          $"<p>Approve email by clicking <a href='{url}'>this link</a>.</p>");*/
 
                     responseViewModel.Id = user.Id;
                     responseViewModel.IsSuccess = true;
-                    responseViewModel.Message = "Kullanıcı başarılı şekilde oluşturuldu.";
+                    responseViewModel.Message = "User created successfully.";
                 }
                 else
                 {
                     responseViewModel.IsSuccess = false;
-                    responseViewModel.Message = string.Format("Kullanıcı oluşturulurken bir hata oluştu: {0}", result.Errors.FirstOrDefault().Description);
+                    responseViewModel.Message = string.Format("An error occurred while creating the user: {0}", result.Errors.FirstOrDefault().Description);
                 }
 
                 return Ok(responseViewModel);
@@ -155,7 +154,7 @@ namespace BackendTemplate.Controllers
                 if (ModelState.IsValid == false)
                 {
                     responseViewModel.IsSuccess = false;
-                    responseViewModel.Message = "Bilgileriniz eksik, bazı alanlar gönderilmemiş. Lütfen tüm alanları doldurunuz.";
+                    responseViewModel.Message = "Your information is incomplete, some fields were not submitted. Please fill in all fields.";
                     return BadRequest(responseViewModel);
                 }
 
@@ -176,26 +175,25 @@ namespace BackendTemplate.Controllers
                 if (signInResult.Succeeded == false)
                 {
                     responseViewModel.IsSuccess = false;
-                    responseViewModel.Message = "Kullanıcı adı veya şifre hatalı.";
+                    responseViewModel.Message = "Username or password is wrong.";
 
                     return Unauthorized(responseViewModel);
                 }
                 #endregion
 
                 ApplicationUser applicationUser = _context.Users.FirstOrDefault(x => x.Id == user.Id);
-                var userRoleId = _context.UserRoles.FirstOrDefault(x => x.UserId == applicationUser.Id);
-                var roles = _context.Roles.FirstOrDefault(x => x.Id == userRoleId.RoleId);
 
                 AccessTokenGenerator accessTokenGenerator = new(_context, _config, applicationUser);
                 ApplicationUserTokens userTokens = accessTokenGenerator.GetToken();
                 responseViewModel.Id = user.Id;
                 responseViewModel.IsSuccess = true;
-                responseViewModel.Message = "Kullanıcı giriş yaptı.";
+                responseViewModel.Message = "User is logged in.";
                 responseViewModel.TokenInfo = new TokenInfo
                 {
                     Token = userTokens.Value,
                     ExpireDate = userTokens.ExpireDate
                 };
+                responseViewModel.Role = _userManager.GetRolesAsync(applicationUser).Result.FirstOrDefault();
 
                 return Ok(responseViewModel);
             }
