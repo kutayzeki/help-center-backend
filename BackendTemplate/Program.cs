@@ -40,7 +40,6 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "BackendTemplate", Version = "v1", Description = "<p>This project is created by Kutay Zeki.&nbsp;<a href='https://github.com/kutayzeki'>contact</a></p>" });
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
     {
         Name = "Authorization",
