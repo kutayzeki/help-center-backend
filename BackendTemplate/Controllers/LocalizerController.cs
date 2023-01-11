@@ -15,7 +15,7 @@ namespace BackendTemplate.Controllers
         {
             _stringLocalizer = stringLocalizer;
         }
-
+        //Examples
         [HttpGet]
         public IActionResult Get()
         {

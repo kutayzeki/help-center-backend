@@ -10,7 +10,7 @@
     }
 }
 
-/*
+/* //usage example.
  * public IActionResult GetProducts(int pageNumber, int pageSize)
 {
     // Retrieve the total number of products

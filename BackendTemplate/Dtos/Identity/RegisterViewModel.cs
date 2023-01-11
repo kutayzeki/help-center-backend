@@ -10,20 +10,20 @@ namespace Ekip.Core.ViewModels.IdentityViewModels
     public class RegisterViewModel
     {
         [Required]
-        [DisplayName("Ad soyad")]
+        [DisplayName("Name surname")]
         [StringLength(60)]
         public string Username { get; set; }
 
-        [Required(ErrorMessage = "Email adresi zorunlu")]
+        [Required(ErrorMessage = "Email address is required")]
         [EmailAddress]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "Şifre zorunlu")]
+        [Required(ErrorMessage = "Password required")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Compare("Password", ErrorMessage = "Girmiş olduğunuz parola birbiri ile eşleşmiyor.")]
+        [Compare("Password", ErrorMessage = "The password you entered does not match.")]
         public string ConfirmPassword { get; set; }
 
         public string Role { get;set; }

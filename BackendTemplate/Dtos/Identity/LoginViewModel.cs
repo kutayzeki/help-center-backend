@@ -8,11 +8,11 @@ namespace Ekip.Core.ViewModels.IdentityViewModels
 {
     public class LoginViewModel
     {
-        [Required(ErrorMessage = "Email adresi zorunlu")]
+        [Required(ErrorMessage = "Email address is required")]
         [EmailAddress]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "Şifre zorunlu")]
+        [Required(ErrorMessage = "Password required")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
     }
