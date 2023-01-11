@@ -27,7 +27,7 @@ builder.Services.AddDbContext<APIDbContext>(options =>
 options.UseSqlServer(connectionString), ServiceLifetime.Transient);
 
 builder.Services
-    .AddIdentity<AppUser, IdentityRole>()
+    .AddIdentity<ApplicationUser, IdentityRole>()
     .AddRoleManager<RoleManager<IdentityRole>>()
     .AddEntityFrameworkStores<APIDbContext>().AddDefaultTokenProviders();
 

@@ -49,7 +49,7 @@ namespace BackendTemplate.Controllers
             {
                 var model = new ApiResponseViewModel
                 {
-                    Id = 1,
+                    Id = welcomeMail.Email,
                     IsSuccess = true,
                     Message = "Mail has successfully been sent using template."
                 };
@@ -59,7 +59,7 @@ namespace BackendTemplate.Controllers
             {
                 var model = new ApiResponseViewModel
                 {
-                    Id = 1,
+                    Id = welcomeMail.Email,
                     IsSuccess = false,
                     Message = "An error occured. The Mail could not be sent."
                 };

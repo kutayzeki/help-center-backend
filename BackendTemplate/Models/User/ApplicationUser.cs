@@ -2,7 +2,10 @@
 
 namespace BackendTemplate.Models.User
 {
-    public class AppUser : IdentityUser
+    public class ApplicationUser : IdentityUser
     {
+
     }
+
 }
+
