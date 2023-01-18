@@ -33,11 +33,11 @@ namespace FeedbackHub.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(Guid id)
         {
-            var company = await _companyService.GetById(id);
-            if (company == null)
+            var data = await _companyService.GetById(id);
+            if (data == null)
                 return NotFound();
 
-            return Ok(company);
+            return Ok(data);
         }
 
         [HttpPost]
@@ -45,8 +45,8 @@ namespace FeedbackHub.Controllers
         {
             try
             {
-                await _companyService.Create(model.Name, model.Description, model.Email, model.PhoneNumber);
-                return Ok(model);
+                var response = await _companyService.Create(model.Name, model.Description, model.Email, model.PhoneNumber);
+                return Ok(response);
             }
             catch (Exception ex)
             {
@@ -54,14 +54,20 @@ namespace FeedbackHub.Controllers
             }
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Update(Guid id, [FromBody] Company company)
+        [HttpPut]
+        public async Task<IActionResult> Update([FromBody] Update model)
         {
-            if (id != company.CompanyId)
-                return BadRequest();
 
-            await _companyService.Update(company);
-            return NoContent();
+
+            try
+            {
+                var response = await _companyService.Update(model);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpDelete("{id}")]

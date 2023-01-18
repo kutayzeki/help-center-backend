@@ -2,16 +2,23 @@
 using FeedbackHub.Models;
 using FeedbackHub.Core.Helpers.ResponseModels;
 using FeedbackHub.Models.Product;
+using FeedbackHub.Controllers;
+using Microsoft.Extensions.Localization;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.EntityFrameworkCore;
+using FeedbackHub.Dtos.CompanyDto;
 
 namespace FeedbackHub.Core.Services.CompanyService
 {
     public class CompanyService : ICompanyService
     {
         private readonly APIDbContext _context;
+        private readonly IStringLocalizer<LocalizerController> _stringLocalizer;
 
-        public CompanyService(APIDbContext context)
+        public CompanyService(APIDbContext context, IStringLocalizer<LocalizerController> stringLocalizer)
         {
             _context = context;
+            _stringLocalizer = stringLocalizer;
         }
 
 
@@ -58,40 +65,100 @@ namespace FeedbackHub.Core.Services.CompanyService
             return data;
         }
 
-        public async Task Create(string name, string description, string email, string phoneNumber)
+        public async Task<ApiResponseViewModel> Create(string name, string description, string email, string phoneNumber)
         {
-            var newAccount = new AccountType
-            {
-                AccountTypeId = Guid.NewGuid(),
-                Type = "Standard",
-                MaxFeatureRequests = 1,
-                MaxProducts = 1,
-                MaxUsers = 1,
-                HasAnalytics = true,
-                IsActive = true,
-            };
-            _context.AccountTypes.Add(newAccount);
-            await _context.SaveChangesAsync();
-            var newCompany = new Company
-            {
-                CompanyId  = Guid.NewGuid(),
-                Name = name,
-                Description = description,
-                Email = email,
-                PhoneNumber = phoneNumber,
-                ImgUrl = null,
-                Theme = "default",
-                IsActive = true,
-                AccountTypeId = newAccount.AccountTypeId
-            };
+            //var newAccount = new AccountType
+            //{
+            //    AccountTypeId = Guid.NewGuid(),
+            //    Type = "Standard",
+            //    MaxFeatureRequests = 1,
+            //    MaxProducts = 1,
+            //    MaxUsers = 1,
+            //    HasAnalytics = true,
+            //    IsActive = true,
+            //};
+            //_context.AccountTypes.Add(newAccount);
+            //await _context.SaveChangesAsync();
+            ApiResponseViewModel model = new();
 
-            _context.Companies.Add(newCompany);
-            await _context.SaveChangesAsync();
+            var accountType = _context.AccountTypes.FirstOrDefault();
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                model.IsSuccess = false;
+                model.Message = string.Format(_stringLocalizer["Required"], "Name"); 
+                return model;
+            }
+            try
+            {
+                var newCompany = new Company
+                {
+                    CompanyId = Guid.NewGuid(),
+                    Name = name,
+                    Description = description,
+                    Email = email,
+                    PhoneNumber = phoneNumber,
+                    ImgUrl = null,
+                    Theme = "default",
+                    IsActive = true,
+                    AccountTypeId = accountType.AccountTypeId
+                };
+
+                _context.Companies.Add(newCompany);
+                await _context.SaveChangesAsync();
+
+                model.Id = newCompany.CompanyId.ToString();
+                model.IsSuccess = true;
+                model.Message = _stringLocalizer["ResourceCreated"].ToString();
+
+            }
+            catch (Exception e)
+            {
+                model.IsSuccess = false;
+                model.Message = e.ToString();
+            }
+            return model;
         }
-        public async Task Update(Company company)
+        public async Task<ApiResponseViewModel> Update(Update data)
         {
-            _context.Companies.Update(company);
-            await _context.SaveChangesAsync();
+            ApiResponseViewModel model = new();
+            
+            try
+            {
+                var item = await _context.Companies.AsNoTracking().SingleOrDefaultAsync(x => x.CompanyId == data.CompanyId);
+                if (item == null)
+                {
+                    model.IsSuccess = false;
+                    model.Message = _stringLocalizer["NotFound"].ToString();
+                    return model;
+                }
+
+                var updateCompany = new Company
+                {
+                    CompanyId = item.CompanyId,
+                    Name = data.Name ?? data.Name,
+                    Description = data.Description ?? data.Description,
+                    Email = data.Email ?? data.Email,
+                    PhoneNumber = data.PhoneNumber ?? data.PhoneNumber,
+                    ImgUrl = data.ImgUrl ?? data.PhoneNumber,
+                    Theme = data.Theme ?? data.Theme,
+                    IsActive = item.IsActive,
+                    AccountTypeId = item.AccountTypeId
+                };
+
+                _context.Companies.Update(updateCompany);
+                await _context.SaveChangesAsync();
+
+                model.Id = item.CompanyId.ToString();
+                model.IsSuccess = true;
+                model.Message = _stringLocalizer["ResourceUpdated"].ToString();
+
+            }
+            catch (Exception e)
+            {
+                model.IsSuccess = false;
+                model.Message = e.ToString();
+            }
+            return model;
         }
 
         public async Task Delete(Guid id)
