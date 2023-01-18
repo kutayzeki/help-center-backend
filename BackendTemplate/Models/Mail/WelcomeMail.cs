@@ -1,4 +1,4 @@
-﻿namespace BackendTemplate.Models.Mail
+﻿namespace FeedbackHub.Models.Mail
 {
     public class WelcomeMail
     {

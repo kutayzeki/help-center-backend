@@ -1,10 +1,10 @@
-﻿using BackendTemplate.Models;
-using BackendTemplate.Models.User;
+﻿using FeedbackHub.Models;
+using FeedbackHub.Models.User;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BackendTemplate.Controllers
+namespace FeedbackHub.Controllers
 {
     [ApiController]
     [Route("api/v{version:apiVersion}/[controller]")]

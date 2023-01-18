@@ -1,4 +1,4 @@
-﻿namespace BackendTemplate.Models.User
+﻿namespace FeedbackHub.Models.User
 {
     public class TokenInfo
     {

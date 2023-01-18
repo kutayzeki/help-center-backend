@@ -4,6 +4,7 @@ using FeedbackHub.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FeedbackHub.Migrations
 {
     [DbContext(typeof(APIDbContext))]
-    partial class APIDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230118143626_company-users")]
+    partial class companyusers
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -93,15 +96,25 @@ namespace FeedbackHub.Migrations
 
             modelBuilder.Entity("FeedbackHub.Models.CompanyUser.CompanyUser", b =>
                 {
+                    b.Property<Guid>("RoleId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<Guid>("CompanyId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("UserId", "CompanyId");
+                    b.Property<string>("RoleId1")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("RoleId", "UserId", "CompanyId");
 
                     b.HasIndex("CompanyId");
+
+                    b.HasIndex("RoleId1");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("CompanyUsers");
                 });
@@ -424,6 +437,10 @@ namespace FeedbackHub.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", "Role")
+                        .WithMany()
+                        .HasForeignKey("RoleId1");
+
                     b.HasOne("FeedbackHub.Models.User.ApplicationUser", "User")
                         .WithMany("CompanyUsers")
                         .HasForeignKey("UserId")
@@ -431,6 +448,8 @@ namespace FeedbackHub.Migrations
                         .IsRequired();
 
                     b.Navigation("Company");
+
+                    b.Navigation("Role");
 
                     b.Navigation("User");
                 });

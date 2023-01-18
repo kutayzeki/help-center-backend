@@ -1,6 +1,6 @@
-﻿using BackendTemplate.Models.Mail;
+﻿using FeedbackHub.Models.Mail;
 
-namespace BackendTemplate.Core.Services.MailService
+namespace FeedbackHub.Core.Services.MailService
 {
     public interface IMailService
     {

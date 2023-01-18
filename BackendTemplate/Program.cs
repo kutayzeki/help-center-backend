@@ -1,10 +1,11 @@
-using BackendTemplate;
-using BackendTemplate.Core.Configuration;
-using BackendTemplate.Core.Middleware;
-using BackendTemplate.Core.Services.MailService;
-using BackendTemplate.Core.Utilities.Localization;
-using BackendTemplate.Models;
-using BackendTemplate.Models.User;
+using FeedbackHub;
+using FeedbackHub.Core.Configuration;
+using FeedbackHub.Core.Middleware;
+using FeedbackHub.Core.Services.CompanyService;
+using FeedbackHub.Core.Services.MailService;
+using FeedbackHub.Core.Utilities.Localization;
+using FeedbackHub.Models;
+using FeedbackHub.Models.User;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
@@ -33,6 +34,7 @@ builder.Services
 
 
 builder.Services.AddScoped<ExceptionMiddleware>();
+builder.Services.AddScoped<ICompanyService, CompanyService>();
 
 
 builder.Services.AddControllers();

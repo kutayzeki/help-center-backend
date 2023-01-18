@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace BackendTemplate.Core.Utilities.Localization
+namespace FeedbackHub.Core.Utilities.Localization
 {
     public class LocalizerMiddleware : IMiddleware
     {

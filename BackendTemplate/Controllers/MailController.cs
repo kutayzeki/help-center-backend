@@ -1,9 +1,9 @@
-﻿using BackendTemplate.Core.Helpers.ResponseModels;
-using BackendTemplate.Core.Services.MailService;
-using BackendTemplate.Models.Mail;
+﻿using FeedbackHub.Core.Helpers.ResponseModels;
+using FeedbackHub.Core.Services.MailService;
+using FeedbackHub.Models.Mail;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BackendTemplate.Controllers
+namespace FeedbackHub.Controllers
 {
     [ApiController]
     [Route("api/v{version:apiVersion}/[controller]")]

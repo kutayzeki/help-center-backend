@@ -1,6 +1,6 @@
-﻿using BackendTemplate.Models.User;
+﻿using FeedbackHub.Models.User;
 
-namespace BackendTemplate.Core.Helpers.ResponseModels
+namespace FeedbackHub.Core.Helpers.ResponseModels
 {
     public class LoginResponse
     {

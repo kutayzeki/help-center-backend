@@ -1,13 +1,13 @@
-﻿using BackendTemplate.Core.Helpers.ResponseModels;
-using BackendTemplate.Core.Services.MailService;
-using BackendTemplate.Core.Utilities;
-using BackendTemplate.Models;
-using BackendTemplate.Models.User;
+﻿using FeedbackHub.Core.Helpers.ResponseModels;
+using FeedbackHub.Core.Services.MailService;
+using FeedbackHub.Core.Utilities;
+using FeedbackHub.Models;
+using FeedbackHub.Models.User;
 using Ekip.Core.ViewModels.IdentityViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BackendTemplate.Controllers
+namespace FeedbackHub.Controllers
 {
     [ApiController]
     [Route("api/v{version:apiVersion}/[controller]")]

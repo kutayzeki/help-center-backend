@@ -1,5 +1,5 @@
-﻿using BackendTemplate.Models.User;
-using BackendTemplate.Models;
+﻿using FeedbackHub.Models.User;
+using FeedbackHub.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -10,7 +10,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BackendTemplate.Core.Utilities
+namespace FeedbackHub.Core.Utilities
 {
     public class AccessTokenGenerator
     {

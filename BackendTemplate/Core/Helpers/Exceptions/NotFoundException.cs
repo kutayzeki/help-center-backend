@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace BackendTemplate.Core.Helpers.Exceptions
+namespace FeedbackHub.Core.Helpers.Exceptions
 {
     public class NotFoundException : CustomException
     {

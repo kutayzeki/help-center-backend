@@ -1,4 +1,4 @@
-﻿namespace BackendTemplate.Core.Helpers.ResponseModels
+﻿namespace FeedbackHub.Core.Helpers.ResponseModels
 {
     public class ErrorResponse
     {

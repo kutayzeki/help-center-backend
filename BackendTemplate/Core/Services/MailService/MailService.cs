@@ -2,12 +2,12 @@
 using MailKit.Security;
 using Microsoft.Extensions.Options;
 using MimeKit;
-using BackendTemplate.Models.Mail;
-using BackendTemplate.Core.Configuration;
+using FeedbackHub.Models.Mail;
+using FeedbackHub.Core.Configuration;
 using RazorEngineCore;
 using System.Text;
 
-namespace BackendTemplate.Core.Services.MailService
+namespace FeedbackHub.Core.Services.MailService
 {
     public class MailService : IMailService
     {

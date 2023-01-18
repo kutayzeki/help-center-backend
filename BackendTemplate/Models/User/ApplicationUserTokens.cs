@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace BackendTemplate.Models.User
+namespace FeedbackHub.Models.User
 {
     public class ApplicationUserTokens : IdentityUserToken<string>
     {

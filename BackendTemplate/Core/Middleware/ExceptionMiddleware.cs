@@ -1,5 +1,5 @@
-﻿using BackendTemplate.Core.Helpers.Exceptions;
-using BackendTemplate.Core.Helpers.ResponseModels;
+﻿using FeedbackHub.Core.Helpers.Exceptions;
+using FeedbackHub.Core.Helpers.ResponseModels;
 using Newtonsoft.Json;
 using Serilog.Context;
 using Serilog;

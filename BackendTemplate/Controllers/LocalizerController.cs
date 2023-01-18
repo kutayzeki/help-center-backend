@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 
-namespace BackendTemplate.Controllers
+namespace FeedbackHub.Controllers
 {
     [ApiController]
     [Route("api/v{version:apiVersion}/[controller]")]

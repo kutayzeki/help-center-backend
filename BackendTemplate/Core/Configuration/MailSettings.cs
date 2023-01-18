@@ -1,4 +1,4 @@
-﻿namespace BackendTemplate.Core.Configuration
+﻿namespace FeedbackHub.Core.Configuration
 {
     public class MailSettings
     {

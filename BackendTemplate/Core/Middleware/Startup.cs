@@ -1,4 +1,4 @@
-﻿namespace BackendTemplate.Core.Middleware
+﻿namespace FeedbackHub.Core.Middleware
 {
     public static class Startup
     {
