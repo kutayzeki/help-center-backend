@@ -161,11 +161,31 @@ namespace FeedbackHub.Core.Services.CompanyService
             return model;
         }
 
-        public async Task Delete(Guid id)
+        public async Task<ApiResponseViewModel> Delete(Guid id)
         {
-            var company = await _context.Companies.FindAsync(id);
-            _context.Companies.Remove(company);
-            await _context.SaveChangesAsync();
+            ApiResponseViewModel model = new();
+            try
+            {
+                var item = await _context.Companies.FindAsync(id);
+                if (item == null)
+                {
+                    model.IsSuccess = false;
+                    model.Message = _stringLocalizer["NotFound"].ToString();
+                    return model;
+                }
+                _context.Companies.Remove(item);
+                await _context.SaveChangesAsync();
+
+                model.Id = item.CompanyId.ToString();
+                model.IsSuccess = true;
+                model.Message = _stringLocalizer["ResourceDeleted"].ToString();
+            }
+            catch (Exception e)
+            {
+                model.IsSuccess = false;
+                model.Message = e.ToString();
+            }
+            return model;
         }
     }
 }

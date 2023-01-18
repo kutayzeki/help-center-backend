@@ -22,12 +22,9 @@ namespace FeedbackHub.Models.Feedback
 
         public string UserId { get; set; }
         public virtual ApplicationUser User { get; set; }
-
         public int Upvotes { get; set; }
-
         public int Type { get; set; }
         public bool IsActive { get; set; }
-
         public DateTime CreatedAt { get; set; }        
         public DateTime? UpdatedAt { get; set; }
 

@@ -57,8 +57,6 @@ namespace FeedbackHub.Controllers
         [HttpPut]
         public async Task<IActionResult> Update([FromBody] Update model)
         {
-
-
             try
             {
                 var response = await _companyService.Update(model);
@@ -73,8 +71,15 @@ namespace FeedbackHub.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {
-            await _companyService.Delete(id);
-            return NoContent();
+            try
+            {
+                var response = await _companyService.Delete(id);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 

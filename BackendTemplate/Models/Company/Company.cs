@@ -17,6 +17,8 @@ namespace FeedbackHub.Models.Company
         public string? ImgUrl { get; set; }
         public string? Theme { get; set; }
         public bool IsActive { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
         public Guid? AccountTypeId { get; set; }
         public virtual AccountType AccountType { get; set; }
         public virtual List<Product.Product> Products { get; set; }
