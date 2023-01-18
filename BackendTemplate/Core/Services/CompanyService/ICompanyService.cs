@@ -8,7 +8,7 @@ namespace FeedbackHub.Core.Services.CompanyService
     {
         Task<PagedApiResponseViewModel<Company>> GetAll(int pageNumber, int pageSize);
         Task<Company> GetById(Guid id);
-        Task<ApiResponseViewModel> Create(string name, string description, string email, string phoneNumber);
+        Task<ApiResponseViewModel> Create(Create data);
         Task<ApiResponseViewModel> Update(Update data);
         Task<ApiResponseViewModel> Delete(Guid id);
     }

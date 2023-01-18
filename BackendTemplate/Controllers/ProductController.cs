@@ -1,40 +1,36 @@
-﻿using FeedbackHub.Core.Services.CompanyService;
-using FeedbackHub.Dtos.CompanyDto;
-using FeedbackHub.Models.Company;
+﻿using FeedbackHub.Core.Services.ProductService;
+using FeedbackHub.Dtos.ProductDto;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Localization;
 
 namespace FeedbackHub.Controllers
 {
     [ApiController]
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiVersion("1.0")]
-    public class CompanyController : ControllerBase
+    public class ProductController : ControllerBase
     {
-        private readonly IStringLocalizer<LocalizerController> _stringLocalizer;
-        private readonly ICompanyService _companyService;
+        private readonly IProductService _productService;
 
         private const int DEFAULT_PAGE_SIZE = 10;
         private const int DEFAULT_PAGE_NUMBER = 1;
 
-        public CompanyController(IStringLocalizer<LocalizerController> stringLocalizer, ICompanyService companyService)
+        public ProductController(IProductService productService)
         {
-            _stringLocalizer = stringLocalizer;
-            _companyService = companyService;
+            _productService = productService;
         }
 
         [HttpGet("all")]
         public async Task<IActionResult> GetAll(int pageNumber = DEFAULT_PAGE_NUMBER, int pageSize = DEFAULT_PAGE_SIZE)
         {
-            var result = await _companyService.GetAll(pageNumber, pageSize);
+            var result = await _productService.GetAll(pageNumber, pageSize);
             return Ok(result);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(Guid id)
         {
-            var data = await _companyService.GetById(id);
+            var data = await _productService.GetById(id);
             if (data == null)
                 return NotFound();
 
@@ -42,11 +38,11 @@ namespace FeedbackHub.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] Create model)
+        public async Task<IActionResult> Create([FromBody] ProductCreate model)
         {
             try
             {
-                var response = await _companyService.Create(model);
+                var response = await _productService.Create(model);
                 return Ok(response);
             }
             catch (Exception ex)
@@ -56,11 +52,11 @@ namespace FeedbackHub.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update([FromBody] Update model)
+        public async Task<IActionResult> Update([FromBody] ProductUpdate model)
         {
             try
             {
-                var response = await _companyService.Update(model);
+                var response = await _productService.Update(model);
                 return Ok(response);
             }
             catch (Exception ex)
@@ -74,7 +70,7 @@ namespace FeedbackHub.Controllers
         {
             try
             {
-                var response = await _companyService.Delete(id);
+                var response = await _productService.Delete(id);
                 return Ok(response);
             }
             catch (Exception ex)
@@ -83,5 +79,4 @@ namespace FeedbackHub.Controllers
             }
         }
     }
-
 }
