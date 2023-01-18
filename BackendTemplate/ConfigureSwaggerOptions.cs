@@ -53,7 +53,7 @@ namespace FeedbackHub
         {
             var info = new OpenApiInfo()
             {
-                Title = "Backend Template",
+                Title = "Feedback Hub",
                 Version = desc.ApiVersion.ToString()
             };
 

@@ -2,6 +2,7 @@ using FeedbackHub;
 using FeedbackHub.Core.Configuration;
 using FeedbackHub.Core.Middleware;
 using FeedbackHub.Core.Services.CompanyService;
+using FeedbackHub.Core.Services.CompanyUserService;
 using FeedbackHub.Core.Services.FeedbackService;
 using FeedbackHub.Core.Services.MailService;
 using FeedbackHub.Core.Services.ProductService;
@@ -39,6 +40,7 @@ builder.Services.AddScoped<ExceptionMiddleware>();
 builder.Services.AddScoped<ICompanyService, CompanyService>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IFeedbackService, FeedbackService>();
+builder.Services.AddScoped<ICompanyUserService, CompanyUserService>();
 
 
 builder.Services.AddControllers();
