@@ -23,7 +23,7 @@ namespace FeedbackHub.Core.Services.CompanyService
             var totalPages = pageSize == 0 ? 0 :(int)Math.Ceiling((double)totalRecords / pageSize);
 
             // Retrieve the paginated products
-            var companies = _context.Companies
+            var data = _context.Companies
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
                 .ToList();
@@ -35,7 +35,7 @@ namespace FeedbackHub.Core.Services.CompanyService
                 PageSize = pageSize,
                 TotalPages = totalPages,
                 TotalRecords = totalRecords,
-                Data = companies
+                Data = data
             };
 
             return model;
@@ -43,7 +43,19 @@ namespace FeedbackHub.Core.Services.CompanyService
 
         public async Task<Company> GetById(Guid id)
         {
-            return await _context.Companies.FindAsync(id);
+            if (id == Guid.Empty)
+            {
+                throw new ArgumentException("Invalid ID provided");
+            }
+
+            var data = await _context.Companies.FindAsync(id);
+
+            if (data == null)
+            {
+                throw new ArgumentException("No company found with the provided ID");
+            }
+
+            return data;
         }
 
         public async Task Create(string name, string description, string email, string phoneNumber)
