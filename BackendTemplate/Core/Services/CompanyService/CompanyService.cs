@@ -98,7 +98,9 @@ namespace FeedbackHub.Core.Services.CompanyService
                     ImgUrl = null,
                     Theme = "default",
                     IsActive = true,
-                    AccountTypeId = accountType.AccountTypeId
+                    AccountTypeId = accountType.AccountTypeId,
+                    CreatedAt = DateTime.UtcNow,
+                    UpdatedAt = DateTime.UtcNow,
                 };
 
                 _context.Companies.Add(newCompany);
