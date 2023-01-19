@@ -64,6 +64,18 @@ namespace FeedbackHub.Core.Services.FeedbackService
         }
         public async Task<PagedApiResponseViewModel<GetFeedbacks>> GetFeedbacksByProductId(Guid productId, FeedbackType feedbackType, int pageNumber, int pageSize)
         {
+            var isProductExist = await _context.Products.FindAsync(productId);
+
+            if (isProductExist == null)
+            {
+                throw new ArgumentException("Invalid Product ID provided");
+
+            }
+            if (feedbackType != FeedbackType.FeatureRequest && feedbackType != FeedbackType.Idea && feedbackType != FeedbackType.Bug && feedbackType != FeedbackType.All)
+            {
+                throw new Exception("Invalid feedback type");
+
+            }
             var feedbacks = from f in _context.Feedbacks
                             join p in _context.Products on f.ProductId equals p.ProductId
                             where p.ProductId == productId
@@ -73,6 +85,7 @@ namespace FeedbackHub.Core.Services.FeedbackService
                                 Title = f.Title,
                                 Description= f.Description,
                                 FeedbackType = f.Type,
+                                Upvotes = f.FeedbackUpvotes.Count,
                                 ProductName = p.Name,
                                 CompanyName = p.Company.Name
                             };
@@ -137,7 +150,12 @@ namespace FeedbackHub.Core.Services.FeedbackService
                 return model;
             }
             #endregion
-
+            if (data.Type != FeedbackType.FeatureRequest && data.Type != FeedbackType.Idea && data.Type != FeedbackType.Bug)
+            {
+                model.IsSuccess = false;
+                model.Message = string.Format(_stringLocalizer["Invalid"], "Feedback type");
+                return model;
+            }
             try
             {
                 var product = await _context.Products.AsNoTracking().SingleOrDefaultAsync(x => x.ProductId == data.ProductId);

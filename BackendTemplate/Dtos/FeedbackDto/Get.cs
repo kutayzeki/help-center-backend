@@ -8,6 +8,7 @@ namespace FeedbackHub.Dtos.FeedbackDto
         public Guid FeedbackId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
+        public int Upvotes { get; set; }
         public FeedbackType FeedbackType { get; set; }
         public string ProductName { get; set; }
         public string CompanyName { get; set; }
