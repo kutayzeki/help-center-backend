@@ -8,6 +8,7 @@ namespace FeedbackHub.Core.Services.FeedbackService
     {
         Task<PagedApiResponseViewModel<Feedback>> GetAll(int pageNumber, int pageSize);
         Task<Feedback> GetById(Guid id);
+        Task<PagedApiResponseViewModel<GetFeedbacks>> GetFeedbacksByProductId(Guid companyId, FeedbackType feedbackType, int pageNumber, int pageSize);
         Task<ApiResponseViewModel> Create(FeedbackCreate data);
         Task<ApiResponseViewModel> Update(FeedbackUpdate data);
         Task<ApiResponseViewModel> Delete(Guid id);

@@ -17,14 +17,22 @@ namespace FeedbackHub.Models.Feedback
         [Required]
         public Guid ProductId { get; set; }
         public virtual Product.Product Product { get; set; }
-
         public string UserId { get; set; }
         public virtual ApplicationUser User { get; set; }
-        public int Type { get; set; }
+        public FeedbackType Type { get; set; }
         public bool IsActive { get; set; }
         public DateTime CreatedAt { get; set; }        
         public DateTime? UpdatedAt { get; set; }
         public virtual List<FeedbackUpvote> FeedbackUpvotes { get; set; }
 
     }
+
+    public enum FeedbackType
+    {
+        FeatureRequest = 100,
+        Idea = 200,
+        Bug = 300,
+        All = 400
+    }
+
 }

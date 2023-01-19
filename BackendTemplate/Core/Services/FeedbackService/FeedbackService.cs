@@ -62,6 +62,48 @@ namespace FeedbackHub.Core.Services.FeedbackService
 
             return data;
         }
+        public async Task<PagedApiResponseViewModel<GetFeedbacks>> GetFeedbacksByProductId(Guid productId, FeedbackType feedbackType, int pageNumber, int pageSize)
+        {
+            var feedbacks = from f in _context.Feedbacks
+                            join p in _context.Products on f.ProductId equals p.ProductId
+                            where p.ProductId == productId
+                            select new GetFeedbacks
+                            {
+                                FeedbackId = f.FeedbackId,
+                                Title = f.Title,
+                                Description= f.Description,
+                                FeedbackType = f.Type,
+                                ProductName = p.Name,
+                                CompanyName = p.Company.Name
+                            };
+            if (feedbackType != FeedbackType.All)
+            {
+                feedbacks = feedbacks.Where(x => x.FeedbackType == feedbackType);
+            }
+            
+            // Retrieve the total number of products
+            var totalRecords = feedbacks.Count();
+            // Calculate the total number of pages
+            var totalPages = pageSize == 0 ? 0 : (int)Math.Ceiling((double)totalRecords / pageSize);
+
+            // Retrieve the paginated products
+            var data = feedbacks
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            // Create the view model
+            var model = new PagedApiResponseViewModel<GetFeedbacks>
+            {
+                PageNumber = pageNumber,
+                PageSize = pageSize,
+                TotalPages = totalPages,
+                TotalRecords = totalRecords,
+                Data = data
+            };
+
+            return model;
+        }
 
         public async Task<ApiResponseViewModel> Create(FeedbackCreate data)
         {

@@ -1,5 +1,6 @@
 ﻿using FeedbackHub.Core.Services.FeedbackService;
 using FeedbackHub.Dtos.FeedbackDto;
+using FeedbackHub.Models.Feedback;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -35,6 +36,12 @@ namespace FeedbackHub.Controllers
                 return NotFound();
 
             return Ok(data);
+        }
+        [HttpGet("GetFeedbacksByProduct")]
+        public async Task<IActionResult> GetFeedbacksByProduct(Guid productId, FeedbackType feedbackType, int pageNumber = DEFAULT_PAGE_NUMBER, int pageSize = DEFAULT_PAGE_SIZE)
+        {
+            var result = await _feedbackService.GetFeedbacksByProductId(productId, feedbackType, pageNumber, pageSize);
+            return Ok(result);
         }
 
         [HttpPost]
