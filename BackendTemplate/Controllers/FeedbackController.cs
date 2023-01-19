@@ -78,5 +78,31 @@ namespace FeedbackHub.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [HttpPost("upvote")]
+        public async Task<IActionResult> CreateFeedbackUpvote([FromBody] CreateUpvote model)
+        {
+            try
+            {
+                var response = await _feedbackService.CreateFeedbackUpvote(model);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpDelete("removeupvote/{id}")]
+        public async Task<IActionResult> DeleteFeedbackUpvote(Guid id)
+        {
+            try
+            {
+                var response = await _feedbackService.DeleteFeedbackUpvote(id);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

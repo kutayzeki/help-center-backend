@@ -1,10 +1,10 @@
-﻿using FeedbackHub.Models.Feedback;
-using FeedbackHub.Models;
+﻿using FeedbackHub.Controllers;
 using FeedbackHub.Core.Helpers.ResponseModels;
-using FeedbackHub.Controllers;
-using Microsoft.Extensions.Localization;
-using Microsoft.EntityFrameworkCore;
 using FeedbackHub.Dtos.FeedbackDto;
+using FeedbackHub.Models;
+using FeedbackHub.Models.Feedback;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
 
 namespace FeedbackHub.Core.Services.FeedbackService
 {
@@ -25,7 +25,7 @@ namespace FeedbackHub.Core.Services.FeedbackService
             // Retrieve the total number of products
             var totalRecords = _context.Feedbacks.Count();
             // Calculate the total number of pages
-            var totalPages = pageSize == 0 ? 0 :(int)Math.Ceiling((double)totalRecords / pageSize);
+            var totalPages = pageSize == 0 ? 0 : (int)Math.Ceiling((double)totalRecords / pageSize);
 
             // Retrieve the paginated products
             var data = _context.Feedbacks
@@ -73,7 +73,7 @@ namespace FeedbackHub.Core.Services.FeedbackService
             if (string.IsNullOrWhiteSpace(data.Title))
             {
                 model.IsSuccess = false;
-                model.Message = string.Format(_stringLocalizer["Required"], "Name"); 
+                model.Message = string.Format(_stringLocalizer["Required"], "Name");
                 return model;
             }
             if (string.IsNullOrWhiteSpace(data.Type.ToString()))
@@ -100,13 +100,13 @@ namespace FeedbackHub.Core.Services.FeedbackService
             {
                 var product = await _context.Products.AsNoTracking().SingleOrDefaultAsync(x => x.ProductId == data.ProductId);
                 var user = await _context.Users.FindAsync(data.UserId);
-                if (product == null )
+                if (product == null)
                 {
                     model.IsSuccess = false;
                     model.Message = string.Format(_stringLocalizer["Invalid"], "Company");
                     return model;
-                }                
-                if (user == null )
+                }
+                if (user == null)
                 {
                     model.IsSuccess = false;
                     model.Message = string.Format(_stringLocalizer["Invalid"], "User");
@@ -117,13 +117,12 @@ namespace FeedbackHub.Core.Services.FeedbackService
                     FeedbackId = Guid.NewGuid(),
                     Title = data.Title,
                     Description = data.Description,
-                    Upvotes = 0,
                     Type = data.Type,
                     IsActive = true,
-                    ProductId= data.ProductId,
-                    UserId= data.UserId,
-                    CreatedAt= DateTime.UtcNow,
-                    UpdatedAt= DateTime.UtcNow,
+                    ProductId = data.ProductId,
+                    UserId = data.UserId,
+                    CreatedAt = DateTime.UtcNow,
+                    UpdatedAt = DateTime.UtcNow,
                 };
 
                 _context.Feedbacks.Add(newFeedback);
@@ -144,7 +143,7 @@ namespace FeedbackHub.Core.Services.FeedbackService
         public async Task<ApiResponseViewModel> Update(FeedbackUpdate data)
         {
             ApiResponseViewModel model = new();
-            
+
             try
             {
                 var item = await _context.Feedbacks.AsNoTracking().SingleOrDefaultAsync(x => x.FeedbackId == data.FeedbackId);
@@ -160,7 +159,6 @@ namespace FeedbackHub.Core.Services.FeedbackService
                     FeedbackId = item.FeedbackId,
                     Title = data.Title,
                     Description = data.Description,
-                    Upvotes = item.Upvotes,
                     Type = data.Type,
                     ProductId = item.ProductId,
                     UserId = item.UserId,
@@ -211,5 +209,69 @@ namespace FeedbackHub.Core.Services.FeedbackService
             }
             return model;
         }
+
+        public async Task<ApiResponseViewModel> CreateFeedbackUpvote(CreateUpvote data)
+        {
+            ApiResponseViewModel model = new();
+
+            var alreadyExists = _context.FeedbackUpvotes.Any(x => x.FeedbackId == data.FeedbackId && x.UserId == data.UserId);
+            if (alreadyExists)
+            {
+                model.IsSuccess = false;
+                model.Message = _stringLocalizer["AlreadyExist"].ToString();
+                return model;
+            }
+            try
+            {
+                var upvote = new FeedbackUpvote
+                {
+                    Id = Guid.NewGuid(),
+                    FeedbackId = data.FeedbackId,
+                    UserId = data.UserId,
+                    UpvoteDateTime = DateTime.Now
+                };
+                _context.FeedbackUpvotes.Add(upvote);
+                _context.SaveChanges();
+
+                model.Id = data.FeedbackId.ToString();
+                model.IsSuccess = true;
+                model.Message = _stringLocalizer["ResourceCreated"].ToString();
+            }
+            catch (Exception e)
+            {
+                model.IsSuccess = false;
+                model.Message = e.ToString();
+            }
+            return model;
+        }
+        public async Task<ApiResponseViewModel> DeleteFeedbackUpvote(Guid id)
+        {
+            ApiResponseViewModel model = new();
+            try
+            {
+                    var item = await _context.FeedbackUpvotes.FindAsync(id);
+                    if (item == null)
+                    {
+                        model.IsSuccess = false;
+                        model.Message = _stringLocalizer["NotFound"].ToString();
+                        return model;
+                    }
+
+                    _context.FeedbackUpvotes.Remove(item);
+                    await _context.SaveChangesAsync();
+
+                    model.Id = id.ToString();
+                    model.IsSuccess = true;
+                    model.Message = _stringLocalizer["ResourceDeleted"].ToString();
+
+            }
+            catch (Exception e)
+            {
+                model.IsSuccess = false;
+                model.Message = e.ToString();
+            }
+            return model;
+        }
+
     }
 }

@@ -1,4 +1,5 @@
 ﻿using FeedbackHub.Models.CompanyUser;
+using FeedbackHub.Models.Feedback;
 using FeedbackHub.Models.User;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -16,10 +17,12 @@ namespace FeedbackHub.Models
         public DbSet<Company.AccountType> AccountTypes{ get; set; }
         public DbSet<Product.Product> Products { get; set; }
         public DbSet<Feedback.Feedback> Feedbacks { get; set; }
+        public DbSet<FeedbackUpvote> FeedbackUpvotes { get; set; }
         public DbSet<CompanyUser.CompanyUser> CompanyUsers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Product.Product>()
@@ -44,12 +47,25 @@ namespace FeedbackHub.Models
             modelBuilder.Entity<Company.Company>()
                 .HasMany(c => c.CompanyUsers)
                 .WithOne(c => c.Company)
-                .HasForeignKey(c => c.CompanyId);
-
+                .HasForeignKey(c => c.CompanyId);            
+            
+            modelBuilder.Entity<Feedback.Feedback>()
+                .HasMany(b=> b.FeedbackUpvotes)
+                .WithOne(c => c.Feedback)
+                .HasForeignKey(b => b.FeedbackId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+            modelBuilder.Entity<ApplicationUser>()
+               .HasMany(b => b.FeedbackUpvotes)
+               .WithOne(b => b.User)
+               .HasForeignKey(b => b.UserId);
             modelBuilder.Entity<ApplicationUser>()
                 .HasMany(u => u.CompanyUsers)
                 .WithOne(u => u.User)
                 .HasForeignKey(u => u.UserId);
+            modelBuilder.Entity<FeedbackUpvote>().HasKey(cu => new
+            {
+                cu.Id
+            });
             modelBuilder.Entity<CompanyUser.CompanyUser>().HasKey(cu => new
             {
                 cu.UserId,

@@ -6,6 +6,7 @@
   "Unauthorized": "You are not authorized to perform this action.",
   "Forbidden": "You do not have permission to access this resource.",
   "NotFound": "The requested resource could not be found.",
+  "AlreadyExist": "The resource already exists.",
 
   //SuccessMessages
   "DataRetrieved": "Data retrieved successfully.",

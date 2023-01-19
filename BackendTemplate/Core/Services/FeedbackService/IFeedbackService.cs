@@ -11,5 +11,8 @@ namespace FeedbackHub.Core.Services.FeedbackService
         Task<ApiResponseViewModel> Create(FeedbackCreate data);
         Task<ApiResponseViewModel> Update(FeedbackUpdate data);
         Task<ApiResponseViewModel> Delete(Guid id);
+        Task<ApiResponseViewModel> CreateFeedbackUpvote(CreateUpvote data);
+        Task<ApiResponseViewModel> DeleteFeedbackUpvote(Guid id);
+
     }
 }
