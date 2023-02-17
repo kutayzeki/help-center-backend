@@ -13,7 +13,7 @@ namespace HelpCenter.Models.Product
         public virtual Company.Company Company { get; set; }
         public bool IsActive { get; set; }
         public virtual List<Feedback.Feedback> Feedbacks { get; set; }
-        public virtual List<HelpCenter.HelpCenter> HelpCenters{ get; set; }
+        public virtual List<HelpCenter.HelpCenterModel> HelpCenters{ get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
     }

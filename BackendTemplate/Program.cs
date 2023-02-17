@@ -4,6 +4,7 @@ using HelpCenter.Core.Middleware;
 using HelpCenter.Core.Services.CompanyService;
 using HelpCenter.Core.Services.CompanyUserService;
 using HelpCenter.Core.Services.FeedbackService;
+using HelpCenter.Core.Services.HelpCenterService;
 using HelpCenter.Core.Services.MailService;
 using HelpCenter.Core.Services.ProductService;
 using HelpCenter.Core.Utilities.Localization;
@@ -40,6 +41,7 @@ builder.Services.AddScoped<ExceptionMiddleware>();
 builder.Services.AddScoped<ICompanyService, CompanyService>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IFeedbackService, FeedbackService>();
+builder.Services.AddScoped<IHelpCenterService, HelpCenterService>();
 builder.Services.AddScoped<ICompanyUserService, CompanyUserService>();
 
 

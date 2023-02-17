@@ -65,18 +65,18 @@ namespace HelpCenter.Core.Services.CompanyService
 
         public async Task<ApiResponseViewModel> Create(Create data)
         {
-            //var newAccount = new AccountType
-            //{
-            //    AccountTypeId = Guid.NewGuid(),
-            //    Type = "Standard",
-            //    MaxFeatureRequests = 1,
-            //    MaxProducts = 1,
-            //    MaxUsers = 1,
-            //    HasAnalytics = true,
-            //    IsActive = true,
-            //};
-            //_context.AccountTypes.Add(newAccount);
-            //await _context.SaveChangesAsync();
+            var newAccount = new AccountType
+            {
+                AccountTypeId = Guid.NewGuid(),
+                Type = "Standard",
+                MaxFeatureRequests = 1,
+                MaxProducts = 1,
+                MaxUsers = 1,
+                HasAnalytics = true,
+                IsActive = true,
+            };
+            _context.AccountTypes.Add(newAccount);
+            await _context.SaveChangesAsync();
             ApiResponseViewModel model = new();
 
             var accountType = _context.AccountTypes.FirstOrDefault();

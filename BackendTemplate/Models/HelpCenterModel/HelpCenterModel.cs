@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace HelpCenter.Models.HelpCenter
 {
-    public class HelpCenter
+    public class HelpCenterModel
     {
         public Guid Id { get; set; }
 

@@ -18,7 +18,7 @@ namespace HelpCenter.Models
         public DbSet<Product.Product> Products { get; set; }
         public DbSet<Feedback.Feedback> Feedbacks { get; set; }
         public DbSet<FeedbackUpvote> FeedbackUpvotes { get; set; }
-        public DbSet<HelpCenter.HelpCenter> HelpCenters { get; set; }
+        public DbSet<HelpCenter.HelpCenterModel> HelpCenters { get; set; }
         public DbSet<Section.Section> Sections { get; set; }
         public DbSet<Item.Item> Items { get; set; }
         public DbSet<CompanyUser.CompanyUser> CompanyUsers { get; set; }
@@ -37,7 +37,7 @@ namespace HelpCenter.Models
                 .HasMany(p => p.HelpCenters)
                 .WithOne(f => f.Product)
                 .HasForeignKey(f => f.ProductId);
-            modelBuilder.Entity<HelpCenter.HelpCenter>()
+            modelBuilder.Entity<HelpCenter.HelpCenterModel>()
                 .HasMany(p => p.Sections)
                 .WithOne(f => f.HelpCenter)
                 .HasForeignKey(f => f.HelpCenterId);            

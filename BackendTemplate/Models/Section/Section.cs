@@ -14,7 +14,7 @@ namespace HelpCenter.Models.Section
         public Size Size{ get; set; }
         [Required]
         public Guid HelpCenterId { get; set; }
-        public virtual HelpCenter.HelpCenter HelpCenter { get; set; }
+        public virtual HelpCenter.HelpCenterModel HelpCenter { get; set; }
         public int Order { get; set; }
         public bool IsActive { get; set; }
         public DateTime CreatedAt { get; set; }
