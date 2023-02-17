@@ -11,7 +11,7 @@ namespace HelpCenter.Models.Item
         [Required]
         [StringLength(100, MinimumLength = 1)]
         public string Name { get; set; }
-        public Type Type{ get; set; }
+        public ItemType Type{ get; set; }
         public string Url { get; set; }
         public int Order { get; set; }
         [Required]
@@ -22,7 +22,7 @@ namespace HelpCenter.Models.Item
         public DateTime? UpdatedAt { get; set; }
 
     }
-    public enum Type
+    public enum ItemType
     {
         None = 100,
         Url = 200,
