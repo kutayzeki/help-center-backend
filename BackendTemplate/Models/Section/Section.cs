@@ -9,7 +9,7 @@ namespace HelpCenter.Models.Section
         public Guid Id { get; set; }
 
         [Required]
-        [StringLength(100, MinimumLength = 5)]
+        [StringLength(100, MinimumLength = 1)]
         public string Name { get; set; }
         public Size Size{ get; set; }
         [Required]
@@ -18,19 +18,15 @@ namespace HelpCenter.Models.Section
         public bool IsActive { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
+        public virtual List<Item.Item> Items { get; set; }
+
 
     }
     public enum Size
     {
-        Question = 100,
-        Information = 200,
-        Academic = 300,
-        Message = 400
-    }
-    public enum Position
-    {
-        BottomLeft = 100,
-        BottomRight = 200,
+        Small = 100,
+        Medium = 200,
+        Large = 300,
     }
 
 }

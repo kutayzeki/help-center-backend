@@ -18,6 +18,9 @@ namespace HelpCenter.Models
         public DbSet<Product.Product> Products { get; set; }
         public DbSet<Feedback.Feedback> Feedbacks { get; set; }
         public DbSet<FeedbackUpvote> FeedbackUpvotes { get; set; }
+        public DbSet<HelpCenter.HelpCenter> HelpCenters { get; set; }
+        public DbSet<Section.Section> Sections { get; set; }
+        public DbSet<Item.Item> Items { get; set; }
         public DbSet<CompanyUser.CompanyUser> CompanyUsers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -28,7 +31,21 @@ namespace HelpCenter.Models
             modelBuilder.Entity<Product.Product>()
                 .HasMany(p => p.Feedbacks)
                 .WithOne(f => f.Product)
+                .HasForeignKey(f => f.ProductId);            
+            
+            modelBuilder.Entity<Product.Product>()
+                .HasMany(p => p.HelpCenters)
+                .WithOne(f => f.Product)
                 .HasForeignKey(f => f.ProductId);
+            modelBuilder.Entity<HelpCenter.HelpCenter>()
+                .HasMany(p => p.Sections)
+                .WithOne(f => f.HelpCenter)
+                .HasForeignKey(f => f.HelpCenterId);            
+            modelBuilder.Entity<Section.Section>()
+                .HasMany(p => p.Items)
+                .WithOne(f => f.Section)
+                .HasForeignKey(f => f.SectionId);
+
             modelBuilder.Entity<ApplicationUser>()
                 .HasMany(p => p.Feedbacks)
                 .WithOne(f => f.User)
