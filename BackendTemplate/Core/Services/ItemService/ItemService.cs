@@ -1,40 +1,42 @@
 ﻿using HelpCenter.Controllers;
 using HelpCenter.Core.Helpers.ResponseModels;
-using HelpCenter.Dtos.SectionDto;
+using HelpCenter.Core.Services.ItemService;
+using HelpCenter.Dtos.ItemDto;
 using HelpCenter.Models;
-using HelpCenter.Models.Section;
+using HelpCenter.Models.Item;
+using Item.Dtos.ItemDto;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 
-namespace HelpCenter.Core.Services.SectionService
+namespace HelpCenter.Core.Services.ItemService
 {
-    public class SectionService : ISectionService
+    public class ItemService : IItemService
     {
         private readonly APIDbContext _context;
         private readonly IStringLocalizer<LocalizerController> _stringLocalizer;
 
-        public SectionService(APIDbContext context, IStringLocalizer<LocalizerController> stringLocalizer)
+        public ItemService(APIDbContext context, IStringLocalizer<LocalizerController> stringLocalizer)
         {
             _context = context;
             _stringLocalizer = stringLocalizer;
         }
 
 
-        public async Task<PagedApiResponseViewModel<SectionModel>> GetAll(int pageNumber, int pageSize)
+        public async Task<PagedApiResponseViewModel<ItemModel>> GetAll(int pageNumber, int pageSize)
         {
             // Retrieve the total number of products
-            var totalRecords = _context.Sections.Count();
+            var totalRecords = _context.Items.Count();
             // Calculate the total number of pages
             var totalPages = pageSize == 0 ? 0 : (int)Math.Ceiling((double)totalRecords / pageSize);
 
             // Retrieve the paginated products
-            var data = _context.Sections
+            var data = _context.Items
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
                 .ToList();
 
             // Create the view model
-            var model = new PagedApiResponseViewModel<SectionModel>
+            var model = new PagedApiResponseViewModel<ItemModel>
             {
                 PageNumber = pageNumber,
                 PageSize = pageSize,
@@ -46,58 +48,59 @@ namespace HelpCenter.Core.Services.SectionService
             return model;
         }
 
-        public async Task<SectionModel> GetById(Guid id)
+        public async Task<ItemModel> GetById(Guid id)
         {
             if (id == Guid.Empty)
             {
                 throw new ArgumentException("Invalid ID provided");
             }
 
-            var data = await _context.Sections.FindAsync(id);
+            var data = await _context.Items.FindAsync(id);
 
             if (data == null)
             {
-                throw new ArgumentException("No Section found with the provided ID");
+                throw new ArgumentException("No Item found with the provided ID");
             }
 
             return data;
         }
-        public async Task<PagedApiResponseViewModel<GetSections>> GetSectionsByHelpCenterId(Guid helpCenterId,int pageNumber, int pageSize)
+        public async Task<PagedApiResponseViewModel<GetItems>> GetItemsBySectionId(Guid SectionId,int pageNumber, int pageSize)
         {
-            var isHelpCenterExists = await _context.HelpCenters.FindAsync(helpCenterId);
+            var isSectionExists = await _context.Sections.FindAsync(SectionId);
 
-            if (isHelpCenterExists == null)
+            if (isSectionExists == null)
             {
                 throw new ArgumentException("Invalid Product ID provided");
 
             }
            
-            var Sections = from f in _context.Sections
-                            join p in _context.HelpCenters on f.HelpCenterId equals p.Id
-                            where p.Id == helpCenterId
-                            select new GetSections
+            var Items = from f in _context.Items
+                            join p in _context.Sections on f.SectionId equals p.Id
+                            where p.Id == SectionId
+                            select new GetItems
                             {
                                 Id = f.Id,
                                 Name = f.Name,
-                                Size = f.Size,
+                                Type= f.Type,
+                                Url= f.Url,
                                 Order = f.Order,
-                                HelpCenterName = p.Name,
-                                IsActive = true,
+                                SectionName = p.Name,
+                                IsActive = f.IsActive,
                             };
                        
             // Retrieve the total number of products
-            var totalRecords = Sections.Count();
+            var totalRecords = Items.Count();
             // Calculate the total number of pages
             var totalPages = pageSize == 0 ? 0 : (int)Math.Ceiling((double)totalRecords / pageSize);
 
             // Retrieve the paginated products
-            var data = Sections
+            var data = Items
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
                 .ToList();
 
             // Create the view model
-            var model = new PagedApiResponseViewModel<GetSections>
+            var model = new PagedApiResponseViewModel<GetItems>
             {
                 PageNumber = pageNumber,
                 PageSize = pageSize,
@@ -109,7 +112,7 @@ namespace HelpCenter.Core.Services.SectionService
             return model;
         }
 
-        public async Task<ApiResponseViewModel> Create(SectionCreate data)
+        public async Task<ApiResponseViewModel> Create(ItemCreate data)
         {
 
             ApiResponseViewModel model = new();
@@ -123,10 +126,10 @@ namespace HelpCenter.Core.Services.SectionService
                 return model;
             }
            
-            if (string.IsNullOrWhiteSpace(data.HelpCenterId.ToString()))
+            if (string.IsNullOrWhiteSpace(data.SectionId.ToString()))
             {
                 model.IsSuccess = false;
-                model.Message = string.Format(_stringLocalizer["Required"], "HelpCenterId");
+                model.Message = string.Format(_stringLocalizer["Required"], "SectionId");
                 return model;
             }
          
@@ -134,30 +137,31 @@ namespace HelpCenter.Core.Services.SectionService
            
             try
             {
-                var helpCenter = await _context.HelpCenters.AsNoTracking().SingleOrDefaultAsync(x => x.Id == data.HelpCenterId);
-                if (helpCenter == null)
+                var Section = await _context.Sections.AsNoTracking().SingleOrDefaultAsync(x => x.Id == data.SectionId);
+                if (Section == null)
                 {
                     model.IsSuccess = false;
-                    model.Message = string.Format(_stringLocalizer["Invalid"], "Company");
+                    model.Message = string.Format(_stringLocalizer["Invalid"], "Section");
                     return model;
                 }
                
-                var newSection = new SectionModel
+                var newItem = new ItemModel
                 {
                     Id = Guid.NewGuid(),
                     Name = data.Name,
-                    Size = data.Size,
-                    HelpCenterId = data.HelpCenterId,
-                    IsActive = true,
+                    Type= data.Type,
+                    SectionId = data.SectionId,
+                    IsActive = data.IsActive,
+                    Url = data.Url,
                     Order= data.Order,
                     CreatedAt = DateTime.UtcNow,
                     UpdatedAt = DateTime.UtcNow,
                 };
 
-                _context.Sections.Add(newSection);
+                _context.Items.Add(newItem);
                 await _context.SaveChangesAsync();
 
-                model.Id = newSection.Id.ToString();
+                model.Id = newItem.Id.ToString();
                 model.IsSuccess = true;
                 model.Message = _stringLocalizer["ResourceCreated"].ToString();
 
@@ -169,13 +173,13 @@ namespace HelpCenter.Core.Services.SectionService
             }
             return model;
         }
-        public async Task<ApiResponseViewModel> Update(SectionUpdate data)
+        public async Task<ApiResponseViewModel> Update(ItemUpdate data)
         {
             ApiResponseViewModel model = new();
 
             try
             {
-                var item = await _context.Sections.AsNoTracking().SingleOrDefaultAsync(x => x.Id == data.Id);
+                var item = await _context.Items.AsNoTracking().SingleOrDefaultAsync(x => x.Id == data.Id);
                 if (item == null)
                 {
                     model.IsSuccess = false;
@@ -183,19 +187,19 @@ namespace HelpCenter.Core.Services.SectionService
                     return model;
                 }
 
-                var updateSection = new SectionModel
+                var updateItem = new ItemModel
                 {
                     Id = item.Id,
                     Name = item.Name,
-                    Size= item.Size,
-                    HelpCenterId= item.HelpCenterId,
+                    Type= data.Type,
+                    SectionId= item.SectionId,
                     Order= item.Order,
                     IsActive = item.IsActive,
                     CreatedAt = item.CreatedAt,
                     UpdatedAt = DateTime.UtcNow,
                 };
 
-                _context.Sections.Update(updateSection);
+                _context.Items.Update(updateItem);
                 await _context.SaveChangesAsync();
 
                 model.Id = item.Id.ToString();
@@ -216,14 +220,14 @@ namespace HelpCenter.Core.Services.SectionService
             ApiResponseViewModel model = new();
             try
             {
-                var item = await _context.Sections.FindAsync(id);
+                var item = await _context.Items.FindAsync(id);
                 if (item == null)
                 {
                     model.IsSuccess = false;
                     model.Message = _stringLocalizer["NotFound"].ToString();
                     return model;
                 }
-                _context.Sections.Remove(item);
+                _context.Items.Remove(item);
                 await _context.SaveChangesAsync();
 
                 model.Id = item.Id.ToString();

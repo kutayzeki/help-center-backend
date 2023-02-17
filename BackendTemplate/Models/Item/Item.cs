@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace HelpCenter.Models.Item
 {
-    public class Item
+    public class ItemModel
     {
 
         public Guid Id { get; set; }
@@ -16,7 +16,7 @@ namespace HelpCenter.Models.Item
         public int Order { get; set; }
         [Required]
         public Guid SectionId { get; set; }
-        public virtual Section.Section Section{ get; set; }
+        public virtual Section.SectionModel Section{ get; set; }
         public bool IsActive { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }

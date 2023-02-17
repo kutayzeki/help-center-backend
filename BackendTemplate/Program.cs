@@ -5,6 +5,7 @@ using HelpCenter.Core.Services.CompanyService;
 using HelpCenter.Core.Services.CompanyUserService;
 using HelpCenter.Core.Services.FeedbackService;
 using HelpCenter.Core.Services.HelpCenterService;
+using HelpCenter.Core.Services.ItemService;
 using HelpCenter.Core.Services.MailService;
 using HelpCenter.Core.Services.ProductService;
 using HelpCenter.Core.Services.SectionService;
@@ -43,6 +44,7 @@ builder.Services.AddScoped<ICompanyService, CompanyService>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IFeedbackService, FeedbackService>();
 builder.Services.AddScoped<ISectionService, SectionService>();
+builder.Services.AddScoped<IItemService, ItemService>();
 builder.Services.AddScoped<IHelpCenterService, HelpCenterService>();
 builder.Services.AddScoped<ICompanyUserService, CompanyUserService>();
 

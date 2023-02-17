@@ -21,7 +21,7 @@ namespace HelpCenter.Models.HelpCenter
         public bool IsActive { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
-        public virtual List<Section.Section> Sections{ get; set; }
+        public virtual List<Section.SectionModel> Sections{ get; set; }
 
 
     }

@@ -19,8 +19,8 @@ namespace HelpCenter.Models
         public DbSet<Feedback.Feedback> Feedbacks { get; set; }
         public DbSet<FeedbackUpvote> FeedbackUpvotes { get; set; }
         public DbSet<HelpCenter.HelpCenterModel> HelpCenters { get; set; }
-        public DbSet<Section.Section> Sections { get; set; }
-        public DbSet<Item.Item> Items { get; set; }
+        public DbSet<Section.SectionModel> Sections { get; set; }
+        public DbSet<Item.ItemModel> Items { get; set; }
         public DbSet<CompanyUser.CompanyUser> CompanyUsers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -41,7 +41,7 @@ namespace HelpCenter.Models
                 .HasMany(p => p.Sections)
                 .WithOne(f => f.HelpCenter)
                 .HasForeignKey(f => f.HelpCenterId);            
-            modelBuilder.Entity<Section.Section>()
+            modelBuilder.Entity<Section.SectionModel>()
                 .HasMany(p => p.Items)
                 .WithOne(f => f.Section)
                 .HasForeignKey(f => f.SectionId);

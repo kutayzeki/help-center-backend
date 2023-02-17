@@ -2,7 +2,7 @@
 
 namespace HelpCenter.Dtos.ItemDto
 {
-    public class HelpCenterCreate
+    public class ItemCreate
     {
         public string Name { get; set; }
         public ItemType Type{ get; set; }

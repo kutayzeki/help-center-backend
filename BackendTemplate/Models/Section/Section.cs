@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace HelpCenter.Models.Section
 {
-    public class Section
+    public class SectionModel
     {
         public Guid Id { get; set; }
 
@@ -19,7 +19,7 @@ namespace HelpCenter.Models.Section
         public bool IsActive { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
-        public virtual List<Item.Item> Items { get; set; }
+        public virtual List<Item.ItemModel> Items { get; set; }
 
 
     }
