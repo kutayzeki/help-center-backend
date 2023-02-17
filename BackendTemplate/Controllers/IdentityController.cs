@@ -1,13 +1,13 @@
-﻿using FeedbackHub.Core.Helpers.ResponseModels;
-using FeedbackHub.Core.Services.MailService;
-using FeedbackHub.Core.Utilities;
-using FeedbackHub.Models;
-using FeedbackHub.Models.User;
+﻿using HelpCenter.Core.Helpers.ResponseModels;
+using HelpCenter.Core.Services.MailService;
+using HelpCenter.Core.Utilities;
+using HelpCenter.Models;
+using HelpCenter.Models.User;
 using Ekip.Core.ViewModels.IdentityViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FeedbackHub.Controllers
+namespace HelpCenter.Controllers
 {
     [ApiController]
     [Route("api/v{version:apiVersion}/[controller]")]

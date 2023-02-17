@@ -1,8 +1,8 @@
-﻿using FeedbackHub.Core.Helpers.ResponseModels;
-using FeedbackHub.Dtos.CompanyUserDto;
-using FeedbackHub.Models.CompanyUser;
+﻿using HelpCenter.Core.Helpers.ResponseModels;
+using HelpCenter.Dtos.CompanyUserDto;
+using HelpCenter.Models.CompanyUser;
 
-namespace FeedbackHub.Core.Services.CompanyUserService
+namespace HelpCenter.Core.Services.CompanyUserService
 {
     public interface ICompanyUserService
     {

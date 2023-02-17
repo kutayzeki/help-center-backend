@@ -1,4 +1,4 @@
-﻿namespace FeedbackHub.Models.Mail
+﻿namespace HelpCenter.Models.Mail
 {
     public class MailData
     {        

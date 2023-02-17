@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace FeedbackHub.Models.User
+namespace HelpCenter.Models.User
 {
     public class ApplicationUser : IdentityUser
     {

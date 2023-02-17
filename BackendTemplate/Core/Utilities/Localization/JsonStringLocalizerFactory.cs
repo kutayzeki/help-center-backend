@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Localization;
 
-namespace FeedbackHub.Core.Utilities.Localization
+namespace HelpCenter.Core.Utilities.Localization
 {
     public class JsonStringLocalizerFactory : IStringLocalizerFactory
     {

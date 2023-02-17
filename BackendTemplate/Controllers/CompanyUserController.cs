@@ -1,9 +1,9 @@
-﻿using FeedbackHub.Core.Services.CompanyUserService;
-using FeedbackHub.Dtos.CompanyUserDto;
+﻿using HelpCenter.Core.Services.CompanyUserService;
+using HelpCenter.Dtos.CompanyUserDto;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FeedbackHub.Controllers
+namespace HelpCenter.Controllers
 {
     [ApiController]
     [Route("api/v{version:apiVersion}/[controller]")]

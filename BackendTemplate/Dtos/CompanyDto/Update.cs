@@ -1,10 +1,10 @@
-﻿using FeedbackHub.Models.Company;
-using FeedbackHub.Models.CompanyUser;
-using FeedbackHub.Models.Product;
+﻿using HelpCenter.Models.Company;
+using HelpCenter.Models.CompanyUser;
+using HelpCenter.Models.Product;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 
-namespace FeedbackHub.Dtos.CompanyDto
+namespace HelpCenter.Dtos.CompanyDto
 {
     public class Update
     {

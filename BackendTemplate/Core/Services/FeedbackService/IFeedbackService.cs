@@ -1,8 +1,8 @@
-﻿using FeedbackHub.Core.Helpers.ResponseModels;
-using FeedbackHub.Dtos.FeedbackDto;
-using FeedbackHub.Models.Feedback;
+﻿using HelpCenter.Core.Helpers.ResponseModels;
+using HelpCenter.Dtos.FeedbackDto;
+using HelpCenter.Models.Feedback;
 
-namespace FeedbackHub.Core.Services.FeedbackService
+namespace HelpCenter.Core.Services.FeedbackService
 {
     public interface IFeedbackService
     {

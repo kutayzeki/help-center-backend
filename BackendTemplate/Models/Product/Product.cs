@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace FeedbackHub.Models.Product
+namespace HelpCenter.Models.Product
 {
     public class Product
     {

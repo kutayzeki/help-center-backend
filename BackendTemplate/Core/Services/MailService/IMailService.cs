@@ -1,6 +1,6 @@
-﻿using FeedbackHub.Models.Mail;
+﻿using HelpCenter.Models.Mail;
 
-namespace FeedbackHub.Core.Services.MailService
+namespace HelpCenter.Core.Services.MailService
 {
     public interface IMailService
     {

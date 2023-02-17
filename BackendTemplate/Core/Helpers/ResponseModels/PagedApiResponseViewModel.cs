@@ -1,4 +1,4 @@
-﻿namespace FeedbackHub.Core.Helpers.ResponseModels
+﻿namespace HelpCenter.Core.Helpers.ResponseModels
 {
     public class PagedApiResponseViewModel<T>
     {

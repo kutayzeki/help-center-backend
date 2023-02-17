@@ -1,8 +1,8 @@
-﻿using FeedbackHub.Models.User;
-using FeedbackHub.Models.Product;
+﻿using HelpCenter.Models.User;
+using HelpCenter.Models.Product;
 using System.ComponentModel.DataAnnotations;
 
-namespace FeedbackHub.Models.Feedback
+namespace HelpCenter.Models.Feedback
 {
     public class Feedback
     {

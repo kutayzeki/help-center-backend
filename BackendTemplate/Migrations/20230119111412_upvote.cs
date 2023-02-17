@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace FeedbackHub.Migrations
+namespace HelpCenter.Migrations
 {
     /// <inheritdoc />
     public partial class upvote : Migration

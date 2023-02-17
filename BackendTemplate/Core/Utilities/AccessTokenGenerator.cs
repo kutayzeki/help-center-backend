@@ -1,5 +1,5 @@
-﻿using FeedbackHub.Models.User;
-using FeedbackHub.Models;
+﻿using HelpCenter.Models.User;
+using HelpCenter.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -10,7 +10,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FeedbackHub.Core.Utilities
+namespace HelpCenter.Core.Utilities
 {
     public class AccessTokenGenerator
     {

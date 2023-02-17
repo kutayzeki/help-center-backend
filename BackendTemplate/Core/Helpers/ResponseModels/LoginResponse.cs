@@ -1,6 +1,6 @@
-﻿using FeedbackHub.Models.User;
+﻿using HelpCenter.Models.User;
 
-namespace FeedbackHub.Core.Helpers.ResponseModels
+namespace HelpCenter.Core.Helpers.ResponseModels
 {
     public class LoginResponse
     {

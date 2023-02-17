@@ -1,6 +1,6 @@
 ﻿using AspNetCoreRateLimit;
 
-namespace FeedbackHub.Core.Middleware
+namespace HelpCenter.Core.Middleware
 {
     internal static class RateLimitingMiddleware
     {

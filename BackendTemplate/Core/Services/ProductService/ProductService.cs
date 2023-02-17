@@ -1,12 +1,12 @@
-﻿using FeedbackHub.Models.Product;
-using FeedbackHub.Models;
-using FeedbackHub.Core.Helpers.ResponseModels;
-using FeedbackHub.Controllers;
+﻿using HelpCenter.Models.Product;
+using HelpCenter.Models;
+using HelpCenter.Core.Helpers.ResponseModels;
+using HelpCenter.Controllers;
 using Microsoft.Extensions.Localization;
 using Microsoft.EntityFrameworkCore;
-using FeedbackHub.Dtos.ProductDto;
+using HelpCenter.Dtos.ProductDto;
 
-namespace FeedbackHub.Core.Services.ProductService
+namespace HelpCenter.Core.Services.ProductService
 {
     public class ProductService : IProductService
     {

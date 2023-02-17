@@ -1,12 +1,12 @@
-﻿using FeedbackHub.Controllers;
-using FeedbackHub.Core.Helpers.ResponseModels;
-using FeedbackHub.Dtos.FeedbackDto;
-using FeedbackHub.Models;
-using FeedbackHub.Models.Feedback;
+﻿using HelpCenter.Controllers;
+using HelpCenter.Core.Helpers.ResponseModels;
+using HelpCenter.Dtos.FeedbackDto;
+using HelpCenter.Models;
+using HelpCenter.Models.Feedback;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 
-namespace FeedbackHub.Core.Services.FeedbackService
+namespace HelpCenter.Core.Services.FeedbackService
 {
     public class FeedbackService : IFeedbackService
     {

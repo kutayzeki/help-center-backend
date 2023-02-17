@@ -1,4 +1,4 @@
-﻿namespace FeedbackHub.Core.Configuration
+﻿namespace HelpCenter.Core.Configuration
 {
     public class MailSettings
     {

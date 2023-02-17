@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace FeedbackHub.Core.Helpers.Exceptions
+namespace HelpCenter.Core.Helpers.Exceptions
 {
     public class InternalServerException : CustomException
     {

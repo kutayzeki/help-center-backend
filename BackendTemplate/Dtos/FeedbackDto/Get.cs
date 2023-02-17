@@ -1,7 +1,7 @@
-﻿using FeedbackHub.Models.Feedback;
-using FeedbackHub.Models.Product;
+﻿using HelpCenter.Models.Feedback;
+using HelpCenter.Models.Product;
 
-namespace FeedbackHub.Dtos.FeedbackDto
+namespace HelpCenter.Dtos.FeedbackDto
 {
     public class GetFeedbacks
     {

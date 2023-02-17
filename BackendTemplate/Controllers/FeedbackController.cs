@@ -1,10 +1,10 @@
-﻿using FeedbackHub.Core.Services.FeedbackService;
-using FeedbackHub.Dtos.FeedbackDto;
-using FeedbackHub.Models.Feedback;
+﻿using HelpCenter.Core.Services.FeedbackService;
+using HelpCenter.Dtos.FeedbackDto;
+using HelpCenter.Models.Feedback;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FeedbackHub.Controllers
+namespace HelpCenter.Controllers
 {
     [ApiController]
     [Route("api/v{version:apiVersion}/[controller]")]

@@ -1,6 +1,6 @@
-﻿using FeedbackHub.Models.Feedback;
+﻿using HelpCenter.Models.Feedback;
 
-namespace FeedbackHub.Dtos.FeedbackDto
+namespace HelpCenter.Dtos.FeedbackDto
 {
     public class FeedbackCreate
     {

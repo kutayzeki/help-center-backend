@@ -1,10 +1,10 @@
 ﻿
-using FeedbackHub.Models.Feedback;
-using FeedbackHub.Models.Product;
-using FeedbackHub.Models.User;
+using HelpCenter.Models.Feedback;
+using HelpCenter.Models.Product;
+using HelpCenter.Models.User;
 using System.ComponentModel.DataAnnotations;
 
-namespace FeedbackHub.Dtos.FeedbackDto
+namespace HelpCenter.Dtos.FeedbackDto
 {
     public class FeedbackUpdate
     {

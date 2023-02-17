@@ -1,12 +1,12 @@
-﻿using FeedbackHub.Models.Company;
-using FeedbackHub.Models;
-using FeedbackHub.Core.Helpers.ResponseModels;
-using FeedbackHub.Controllers;
+﻿using HelpCenter.Models.Company;
+using HelpCenter.Models;
+using HelpCenter.Core.Helpers.ResponseModels;
+using HelpCenter.Controllers;
 using Microsoft.Extensions.Localization;
 using Microsoft.EntityFrameworkCore;
-using FeedbackHub.Dtos.CompanyDto;
+using HelpCenter.Dtos.CompanyDto;
 
-namespace FeedbackHub.Core.Services.CompanyService
+namespace HelpCenter.Core.Services.CompanyService
 {
     public class CompanyService : ICompanyService
     {

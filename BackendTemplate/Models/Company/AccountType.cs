@@ -1,4 +1,4 @@
-﻿namespace FeedbackHub.Models.Company
+﻿namespace HelpCenter.Models.Company
 {
     public class AccountType
     {

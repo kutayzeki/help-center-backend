@@ -1,11 +1,11 @@
-﻿using FeedbackHub.Core.Services.CompanyService;
-using FeedbackHub.Dtos.CompanyDto;
-using FeedbackHub.Models.Company;
+﻿using HelpCenter.Core.Services.CompanyService;
+using HelpCenter.Dtos.CompanyDto;
+using HelpCenter.Models.Company;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 
-namespace FeedbackHub.Controllers
+namespace HelpCenter.Controllers
 {
     [ApiController]
     [Route("api/v{version:apiVersion}/[controller]")]

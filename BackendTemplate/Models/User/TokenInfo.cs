@@ -1,4 +1,4 @@
-﻿namespace FeedbackHub.Models.User
+﻿namespace HelpCenter.Models.User
 {
     public class TokenInfo
     {

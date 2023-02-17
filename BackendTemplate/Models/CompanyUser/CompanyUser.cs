@@ -1,7 +1,7 @@
-﻿using FeedbackHub.Models.User;
+﻿using HelpCenter.Models.User;
 using Microsoft.AspNetCore.Identity;
 
-namespace FeedbackHub.Models.CompanyUser
+namespace HelpCenter.Models.CompanyUser
 {
     public class CompanyUser
     {

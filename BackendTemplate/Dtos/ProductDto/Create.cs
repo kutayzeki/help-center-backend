@@ -1,4 +1,4 @@
-﻿namespace FeedbackHub.Dtos.ProductDto
+﻿namespace HelpCenter.Dtos.ProductDto
 {
     public class ProductCreate
     {

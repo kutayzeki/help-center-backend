@@ -1,7 +1,7 @@
-﻿using FeedbackHub.Models.Company;
-using FeedbackHub.Models.User;
+﻿using HelpCenter.Models.Company;
+using HelpCenter.Models.User;
 
-namespace FeedbackHub.Dtos.CompanyUserDto
+namespace HelpCenter.Dtos.CompanyUserDto
 {
     public class CompanyUserCreate
     {

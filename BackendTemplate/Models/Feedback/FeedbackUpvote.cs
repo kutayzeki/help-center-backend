@@ -1,6 +1,6 @@
-﻿using FeedbackHub.Models.User;
+﻿using HelpCenter.Models.User;
 
-namespace FeedbackHub.Models.Feedback
+namespace HelpCenter.Models.Feedback
 {
     public class FeedbackUpvote
     {

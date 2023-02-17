@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace FeedbackHub.Migrations
+namespace HelpCenter.Migrations
 {
     /// <inheritdoc />
-    public partial class feedbackhub : Migration
+    public partial class HelpCenter : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

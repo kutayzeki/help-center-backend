@@ -2,10 +2,10 @@
 
 #nullable disable
 
-namespace FeedbackHub.Migrations
+namespace HelpCenter.Migrations
 {
     /// <inheritdoc />
-    public partial class feedbackhub2 : Migration
+    public partial class HelpCenter2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

@@ -1,4 +1,4 @@
-﻿namespace FeedbackHub.Dtos.CompanyDto
+﻿namespace HelpCenter.Dtos.CompanyDto
 {
     public class Create
     {

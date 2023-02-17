@@ -1,10 +1,10 @@
-﻿using FeedbackHub.Models;
-using FeedbackHub.Models.User;
+﻿using HelpCenter.Models;
+using HelpCenter.Models.User;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FeedbackHub.Controllers
+namespace HelpCenter.Controllers
 {
     [ApiController]
     [Route("api/v{version:apiVersion}/[controller]")]

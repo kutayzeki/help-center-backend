@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 
-namespace FeedbackHub.Models.Company
+namespace HelpCenter.Models.Company
 {
     public class Company
     {

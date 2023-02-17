@@ -1,8 +1,8 @@
-﻿using FeedbackHub.Core.Helpers.ResponseModels;
-using FeedbackHub.Dtos.ProductDto;
-using FeedbackHub.Models.Product;
+﻿using HelpCenter.Core.Helpers.ResponseModels;
+using HelpCenter.Dtos.ProductDto;
+using HelpCenter.Models.Product;
 
-namespace FeedbackHub.Core.Services.ProductService
+namespace HelpCenter.Core.Services.ProductService
 {
     public interface IProductService
     {

@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace FeedbackHub.Migrations
+namespace HelpCenter.Migrations
 {
     /// <inheritdoc />
     public partial class upvote2 : Migration

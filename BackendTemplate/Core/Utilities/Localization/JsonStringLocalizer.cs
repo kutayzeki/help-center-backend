@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Localization;
 using Newtonsoft.Json;
 
-namespace FeedbackHub.Core.Utilities.Localization
+namespace HelpCenter.Core.Utilities.Localization
 {
     public class JsonStringLocalizer : IStringLocalizer
     {

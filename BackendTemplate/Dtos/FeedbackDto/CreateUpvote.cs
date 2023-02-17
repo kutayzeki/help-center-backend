@@ -1,4 +1,4 @@
-﻿namespace FeedbackHub.Dtos.FeedbackDto
+﻿namespace HelpCenter.Dtos.FeedbackDto
 {
     public class CreateUpvote
     {

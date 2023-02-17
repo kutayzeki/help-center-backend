@@ -1,11 +1,11 @@
-﻿using FeedbackHub.Models.CompanyUser;
-using FeedbackHub.Models.Feedback;
-using FeedbackHub.Models.User;
+﻿using HelpCenter.Models.CompanyUser;
+using HelpCenter.Models.Feedback;
+using HelpCenter.Models.User;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 
-namespace FeedbackHub.Models
+namespace HelpCenter.Models
 {
     public class APIDbContext : IdentityDbContext<ApplicationUser>
     {
